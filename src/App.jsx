@@ -10,7 +10,7 @@ import k from "./assets/image.png";
 
 import ki from "./assets/k.jpg";
 
-import lama from './assets/lama.png';
+import lama from "./assets/lama.png";
 const Navbar = ({ scrollToSection }) => (
   <nav className="flex justify-between items-center p-6 h-20  bg-gradient-to-r from-indigo-950 via-purple-700 to-pink-950 sticky top-0 z-10">
     <div className="text-2xl font-serif rounded-full flex gap-x-2">
@@ -20,13 +20,9 @@ const Navbar = ({ scrollToSection }) => (
 
         <span className="font-serif">hushi</span>
         <span className="text-[#FFD700]">
-        <img src={lama} className="h-8 w-8  ml-2 mb-2 inline" alt="" />
-
-
-        
-          
-           ama</span>
-
+          <img src={lama} className="h-8 w-8  ml-2 mb-2 inline" alt="" />
+          ama
+        </span>
       </span>
     </div>
     <div className="space-x-4">
@@ -105,8 +101,8 @@ const About = ({ scrollToSection }) => {
         <div>
           <h2 className="text-2xl font-bold mb-4">ABOUT ME</h2>
           <p className="mb-4">
-            With 6 months as a Flutter Developer, Khushi Lama has developed and
-            maintained mobile applications; previously, she managed financial
+            With 6 months of experience as a Flutter Developer, I have developed
+            and maintained mobile applications. Before this, I managed financial
             records as an Accountant at Paper Cloud Pvt. Ltd., and handled sales
             operations at Masalabeads.
           </p>
@@ -395,7 +391,6 @@ const Footer = () => (
   </footer>
 );
 
-
 // Main App Component
 const App = () => {
   const scrollToSection = (id) => {
@@ -417,7 +412,7 @@ const App = () => {
       <Services />
       <Experience />
       <Contact />
-      <Footer/>
+      <Footer />
     </div>
   );
 };
