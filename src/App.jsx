@@ -346,6 +346,7 @@ const Experience = () => (
 
 // Contact Component
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { toast } from "react-toastify";
 
@@ -362,72 +363,123 @@ const Contact = () => {
     emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
       () => {
         console.log("SUCCESS!");
-        toast("SUCCESS");
+        toast.success("Message sent successfully!", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+        });
       },
       (error) => {
         console.log("FAILED...", error.text);
+        toast.error("Failed to send message. Please try again.", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+        });
       }
     );
   };
 
   return (
-    <div>
-      <section id="contact" className="bg-gray-800 text-white py-12">
-        <h2 className="text-2xl font-bold text-center mb-8">CONTACT ME</h2>
-        <div className="max-w-4xl mx-auto">
-          <p className="text-center mb-6">
-            Feel free to reach out if you have any questions or if you`d like to
-            discuss a potential project.
-          </p>
-          <form ref={form} onSubmit={sendEmail} className="space-y-4">
-            <div>
-              <label className="block mb-2" htmlFor="name">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="from_name"
-                className="w-full p-2 bg-gray-700 text-white rounded"
-                required
-              />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="bg-gradient-to-b from-gray-900 to-gray-700 py-12"
+    >
+      <section id="contact" className="text-white">
+        <motion.h2
+          className="text-4xl font-extrabold text-center mb-8 text-teal-400"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          Get in Touch
+        </motion.h2>
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.p
+            className="text-center mb-8 text-lg"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+          >
+            Whether you have a question or just want to say hi, feel free to drop a message!
+          </motion.p>
+          <motion.form
+            ref={form}
+            onSubmit={sendEmail}
+            className="space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut", delay: 0.8 }}
+          >
+            <div className="flex flex-col gap-4">
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+              >
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Write Your Name"
+                  id="name"
+                  name="from_name"
+                  className="w-full mt-4 p-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  required
+                />
+              </motion.div>
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut", delay: 1.2 }}
+              >
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="from_email"
+                  placeholder="Write Your Email"
+                  className="w-full p-3 mt-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  required
+                />
+              </motion.div>
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut", delay: 1.4 }}
+              >
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Write message "
+                  className="w-full p-3 mt-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  rows="5"
+                  required
+                ></textarea>
+              </motion.div>
             </div>
-            <div>
-              <label className="block mb-2" htmlFor="email">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="from_email"
-                className="w-full p-2 bg-gray-700 text-white rounded"
-                required
-              />
-            </div>
-            <div>
-              <label className="block mb-2" htmlFor="message">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                className="w-full p-2 bg-gray-700 text-white rounded"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            <button
+            <motion.button
               type="submit"
-              className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-500 transition duration-300"
+              className="w-full py-3 mt-6 bg-teal-600 text-white font-semibold rounded-lg shadow-lg hover:bg-teal-500 transition duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-400 focus:ring-opacity-50"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Send Message
-            </button>
-          </form>
+            </motion.button>
+          </motion.form>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
+
+
 
 // Footer Component
 
