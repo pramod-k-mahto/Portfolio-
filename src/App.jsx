@@ -8,15 +8,14 @@ const getRandomImageUrl = (width, height, id) =>
 // Navbar Component
 import k from "./assets/image.png";
 
-import ki from "./assets/k.jpg";
-
 import lama from "./assets/lama.png";
+import wk from './assets/wk.jpg';
 const Navbar = ({ scrollToSection }) => (
   <nav className="flex justify-between items-center p-6 h-20  bg-gradient-to-r from-indigo-950 via-purple-700 to-pink-950 sticky top-0 z-10">
     <div className="text-2xl font-serif rounded-full flex gap-x-2">
-      <img src={ki} alt="" className=" w-14 h-14 rounded-full" />
+      <img src={wk} alt="" className=" w-14 h-14 object-fill rounded-full" />
       <span className="text-[#F5DEB3]  mt-3">
-        <img src={k} className="h-9 w-9 mb-1 inline" alt="" />
+        <img src={k} className="h-10 w-10 mb-1 inline" alt="" />
 
         <span className="font-serif">hushi</span>
         <span className="text-[#FFD700]">
@@ -50,19 +49,36 @@ const Navbar = ({ scrollToSection }) => (
 );
 
 // Header Component
+import A from "./assets/A.jpg";
+import h from "./assets/h.webp";
+import i from "./assets/i.webp";
+import m from "./assets/m.png";
 import img from "./assets/myImg.png";
+import s from "./assets/s.png";
+import sm from "./assets/smile.png";
+import u from "./assets/u.png";
+
 const Header = ({ scrollToSection }) => (
   <header
     style={{ backgroundImage: `url(${img})` }}
     id="home"
     className="text-center bg-no-repeat bg-center bg-cover py-20 bg-gray-800 text-white"
   >
-    <h1 className="text-5xl font-bold mb-4">
-      I’m Khushi Lama,
+    <h1 className="text-2xl mb-4">
+      <img src={i} className="h-20 mt-2 w-14 -ml-4 inline" alt="" />
+      <img src={A} className="h-16 w-13 mb-1 inline" alt="" />
+      <img src={m} className="h-16 w-12 -ml-5 mb-1 inline" alt="" />
+      <img src={k} className="h-16 w-13 ml-5 mb-1 inline" alt="" />
+      <img src={h} className="h-13 w-10 -ml-3 mb-1 inline" alt="" />
+      <img src={u} className="h-13  w-9  inline" alt="" />
+      <img src={s} className="h-14 w-9  inline" alt="" />
+      <img src={h} className="h-13 w-10 -ml-1 inline" alt="" />
+      <img src={i} className="h-13 mt-2 w-14 -ml-4 inline" alt="" />
+      <img src={sm} alt="" className="w-20 h-20 inline mb-3" />
       <br />
-      Flutter Developer.
+      <span className="text-pink-300 text-2xl font-serif" >Flutter Developer.</span>
     </h1>
-    <p className="text-xl mb-6">
+    <p className=" mb-6 text-sky-200 text-2xl  font-thin">
       Turning ideas into elegant, efficient, and user-friendly applications.
     </p>
     <button
@@ -75,6 +91,7 @@ const Header = ({ scrollToSection }) => (
 );
 
 // About Component
+import cv from "./assets/cv.pdf";
 const About = ({ scrollToSection }) => {
   const [showFullBio, setShowFullBio] = useState(false);
   const [profileImage, setProfileImage] = useState("");
@@ -82,10 +99,6 @@ const About = ({ scrollToSection }) => {
   useEffect(() => {
     setProfileImage(getRandomImageUrl(150, 150, "profile"));
   }, []);
-
-  const handleDownloadCV = () => {
-    alert("Downloading CV... (This is a mock action)");
-  };
 
   return (
     <section
@@ -106,10 +119,11 @@ const About = ({ scrollToSection }) => {
             records as an Accountant at Paper Cloud Pvt. Ltd., and handled sales
             operations at Masalabeads.
           </p>
+
           {showFullBio && (
             <p className="mb-4">
               My passion lies in solving complex problems and delivering
-              high-quality software solutions that make a real impact. I'm
+              high-quality software solutions that make a real impact. I`m
               proficient in modern web technologies and always eager to learn
               and adapt to new challenges in the ever-evolving tech landscape.
             </p>
@@ -127,11 +141,11 @@ const About = ({ scrollToSection }) => {
             >
               Hire Me
             </button>
-            <button
-              onClick={handleDownloadCV}
-              className="border border-white text-white px-4 py-2 rounded hover:bg-white hover:text-gray-800 transition duration-300"
-            >
-              Download CV
+            <button className="border border-white text-white px-4 py-2 rounded hover:bg-white hover:text-gray-800 transition duration-300">
+              <a href={cv} download="cv">
+                {" "}
+                Download CV
+              </a>
             </button>
           </div>
         </div>
@@ -148,7 +162,7 @@ import p4_image from "./assets/todo.jpg";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [projects, setProjects] = useState([
+  const [projects] = useState([
     {
       title: "E-commerce Platform",
       description:
@@ -321,66 +335,89 @@ const Experience = () => (
 );
 
 // Contact Component
-const Contact = () => (
-  <section id="contact" className="bg-gray-800 text-white py-12">
-    <h2 className="text-2xl font-bold text-center mb-8">CONTACT ME</h2>
-    <div className="max-w-4xl mx-auto">
-      <p className="text-center mb-6">
-        Feel free to reach out if you have any questions or if you'd like to
-        discuss a potential project.
-      </p>
-      <form
-        action="mailto:khushi@gmail.com"
-        method="POST"
-        encType="multipart/form-data"
-        className="space-y-4"
-      >
-        <div>
-          <label className="block mb-2" htmlFor="name">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="w-full p-2 bg-gray-700 text-white rounded"
-            required
-          />
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
+import { toast } from "react-toastify";
+
+const Contact = () => {
+  const serviceId = import.meta.env.VITE_Service;
+  const templateId = import.meta.env.VITE_Template;
+  const publicKey = import.meta.env.VITE_Public;
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
+      () => {
+        console.log("SUCCESS!");
+        toast("SUCCESS");
+      },
+      (error) => {
+        console.log("FAILED...", error.text);
+      }
+    );
+  };
+
+  return (
+    <div>
+      <section id="contact" className="bg-gray-800 text-white py-12">
+        <h2 className="text-2xl font-bold text-center mb-8">CONTACT ME</h2>
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center mb-6">
+            Feel free to reach out if you have any questions or if you`d like to
+            discuss a potential project.
+          </p>
+          <form ref={form} onSubmit={sendEmail} className="space-y-4">
+            <div>
+              <label className="block mb-2" htmlFor="name">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="from_name"
+                className="w-full p-2 bg-gray-700 text-white rounded"
+                required
+              />
+            </div>
+            <div>
+              <label className="block mb-2" htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="from_email"
+                className="w-full p-2 bg-gray-700 text-white rounded"
+                required
+              />
+            </div>
+            <div>
+              <label className="block mb-2" htmlFor="message">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                className="w-full p-2 bg-gray-700 text-white rounded"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-500 transition duration-300"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
-        <div>
-          <label className="block mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="w-full p-2 bg-gray-700 text-white rounded"
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-2" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            className="w-full p-2 bg-gray-700 text-white rounded"
-            rows="5"
-            required
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-500 transition duration-300"
-        >
-          Send Message
-        </button>
-      </form>
+      </section>
     </div>
-  </section>
-);
+  );
+};
 
 // Footer Component
 const Footer = () => (
@@ -392,6 +429,7 @@ const Footer = () => (
 );
 
 // Main App Component
+
 const App = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
