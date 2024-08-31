@@ -9,11 +9,15 @@ const getRandomImageUrl = (width, height, id) =>
 import k from "./assets/image.png";
 
 import lama from "./assets/lama.png";
-import wk from './assets/wk.jpg';
+import wk from "./assets/wk.jpg";
 const Navbar = ({ scrollToSection }) => (
   <nav className="flex justify-between items-center p-6 h-20  bg-gradient-to-r from-indigo-950 via-purple-700 to-pink-950 sticky top-0 z-10">
     <div className="text-2xl font-serif rounded-full flex gap-x-2">
-      <img src={wk} alt="" className=" w-14 h-14 object-fill rounded-full" />
+      <img
+        src={wk}
+        alt=""
+        className=" w-14 h-14 object-fill rounded-full mt-1"
+      />
       <span className="text-[#F5DEB3]  mt-3">
         <img src={k} className="h-10 w-10 mb-1 inline" alt="" />
 
@@ -64,23 +68,26 @@ const Header = ({ scrollToSection }) => (
     id="home"
     className="text-center bg-no-repeat bg-center bg-cover py-20 bg-gray-800 text-white"
   >
-    <h1 className="text-2xl mb-4">
-      <img src={i} className="h-20 mt-2 w-14 -ml-4 inline" alt="" />
-      <img src={A} className="h-16 w-13 mb-1 inline" alt="" />
-      <img src={m} className="h-16 w-12 -ml-5 mb-1 inline" alt="" />
-      <img src={k} className="h-16 w-13 ml-5 mb-1 inline" alt="" />
-      <img src={h} className="h-13 w-10 -ml-3 mb-1 inline" alt="" />
-      <img src={u} className="h-13  w-9  inline" alt="" />
-      <img src={s} className="h-14 w-9  inline" alt="" />
-      <img src={h} className="h-13 w-10 -ml-1 inline" alt="" />
-      <img src={i} className="h-13 mt-2 w-14 -ml-4 inline" alt="" />
-      <img src={sm} alt="" className="w-20 h-20 inline mb-3" />
+    <div className="text-2xl mb-4">
+      <img src={i} className="h-20 mt-2 mb-3 w-24 -ml-2 inline-block" alt="" />
+      <img src={A} className="h-16 w-13 mb-1  -ml-4 inline-block" alt="" />
+      <img src={m} className="h-16 w-12 -ml-5 mb-1 inline-block" alt="" />
+      <img src={k} className="h-16 w-13 ml-5 mb-1 inline-block" alt="" />
+      <img src={h} className="h-13 w-10 -ml-3 mb-1 inline-block" alt="" />
+      <img src={u} className="h-13  w-9  inline-block" alt="" />
+      <img src={s} className="h-14 w-9 -ml-1  inline-block" alt="" />
+      <img src={h} className="h-13 w-10 -ml-1 inline-block" alt="" />
+      <img src={i} className="h-13 mt-2 w-14 -ml-4 inline-block" alt="" />
+      <img src={sm} alt="" className="w-20 h-20 inline-block mb-3" />
       <br />
-      <span className="text-pink-300 text-2xl font-serif" >Flutter Developer.</span>
-    </h1>
-    <p className=" mb-6 text-sky-200 text-2xl  font-thin">
+      <span className="text-pink-300 text-2xl font-serif tracking-[8px] ">
+        Flutter Developer.
+      </span>
+    </div>
+    <p className=" mb-6 text-sky-200 text-2xl  font-thin tracking-[2px]">
       Turning ideas into elegant, efficient, and user-friendly applications.
     </p>
+
     <button
       onClick={() => scrollToSection("portfolio")}
       className="bg-teal-600 text-white px-6 py-3 rounded-full mt-6 hover:bg-teal-500 transition duration-300"
@@ -112,7 +119,10 @@ const About = ({ scrollToSection }) => {
           className="rounded-lg mb-4 md:mb-0 w-[150px] h-[150px]"
         />
         <div>
-          <h2 className="text-2xl font-bold mb-4">ABOUT ME</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            ABOUT ME
+            <img className="inline-block h-7 ml-3 mb-2" src={fg} alt="" />
+          </h2>
           <p className="mb-4">
             With 6 months of experience as a Flutter Developer, I have developed
             and maintained mobile applications. Before this, I managed financial
@@ -420,10 +430,13 @@ const Contact = () => {
 };
 
 // Footer Component
+
+import fg from "./assets/flag.gif";
 const Footer = () => (
   <footer className="bg-gray-800 text-white py-4 text-center">
     <p className="text-sm">
       &copy; {new Date().getFullYear()} Khushi Lama. All rights reserved.
+      <img className="inline-block h-5 mb-2 ml-2" src={fg} alt="" />
     </p>
   </footer>
 );
