@@ -425,7 +425,7 @@ const Contact = () => {
                   placeholder="Write Your Name"
                   id="name"
                   name="from_name"
-                  className="w-full mt-4 p-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  className="w-full mt-4 p-3 bg-gray-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
                   required
                 />
               </motion.div>
@@ -442,7 +442,7 @@ const Contact = () => {
                   id="email"
                   name="from_email"
                   placeholder="Write Your Email"
-                  className="w-full p-3 mt-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  className="w-full p-3 mt-4 bg-gray-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
                   required
                 />
               </motion.div>
@@ -457,8 +457,8 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Write message "
-                  className="w-full p-3 mt-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  placeholder="Write Message "
+                  className="w-full p-3 mt-4 bg-gray-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
                   rows="5"
                   required
                 ></textarea>
